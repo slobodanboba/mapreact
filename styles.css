@@ -1,0 +1,565 @@
+:root {
+  --pageX: 0;
+  --pageY: 0;
+  --height: 400px;
+  --listHeight: 200px;
+}
+::-webkit-scrollbar {
+   width: 7px;
+}
+::-webkit-scrollbar-track {
+   background: rgba(255,255,255,0.1);
+}
+::-webkit-scrollbar-thumb {
+   background: rgba(255,255,255,0.3);
+}
+::-webkit-scrollbar-thumb:hover {
+   background: rgba(255,255,255,0.5);
+}
+
+html {
+  font-family: fantasy;
+  text-align: center;
+  font-size:9px;
+  background:#2C3E50 ;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-size:cover;
+  min-height:100vh;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+span {
+  font-size: 30px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  text-shadow: 1px 1px rgba(255,255,255,0.2);
+}
+ul li span {
+  color: rgba(255,255,255,0.9);
+  font-size: 1.7em;
+  font-weight: 400;
+  line-height: 30px;
+
+}
+ul li {
+    border-bottom: 2px solid rgba(0,0,0,0.2);
+    text-align: left;
+    list-style: none;
+    line-height: 35px;
+    display: inline-block;
+
+}
+ul li input {
+  background: rgba(255, 255, 255, 0.2);
+  text-transform: inherit;
+  color: rgba(255,255,255,0.85);
+  border-bottom: 2px solid rgba(0,0,0,0.2);
+  height: auto;
+  width: 10px;
+  font-size: 1em;
+  text-align: left;
+  font-weight:200;
+  padding-right: 0px;
+
+}
+.body-container {
+  background-repeat:repeat-x;
+  background-size: cover;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 7fr 3fr;
+      grid-template-columns: 7fr 3fr;
+  -ms-grid-rows: 110px 9fr 1fr;
+      grid-template-rows: 1fr 9fr 1fr;
+}
+.city {
+  position: absolute;
+  bottom: 30px;
+  left: 31%;
+  text-shadow: 1px 1px rgba(255,255,255,0.2);
+  font-size: 30px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+  z-index: auto;
+}
+.World-names {
+  max-width: 200px;
+  width: 200px;
+  height: 60px;
+  top:70%;
+  line-height: 20px;
+  overflow-x: auto;
+  position: absolute;
+  left: 10%;
+}
+.World-city {
+  font-size: 25px;
+  font-weight: 500;
+  text-align: center;
+  text-transform: capitalize;
+}
+.World-countrey {
+  font-size:25px;
+  font-weight: 600;
+  padding-left: 4px;
+  text-transform: capitalize;
+}
+.world-map {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[10];
+      grid-template-columns: repeat(10, 1fr);
+  -ms-grid-rows: (1fr)[10];
+      grid-template-rows: repeat(10, 1fr);
+  grid-row: 2/3;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1/2;
+  background: url("./content/Earthmap.jpg");
+  background-size: cover;
+  border-radius: 15px;
+  height: var(--height);
+  margin: 5px;
+}
+.img {
+  margin: 0px;
+  padding: 0px;
+}
+.zoomed {
+    display: none;
+    grid-row: 1 / -1;
+    grid-column: 1 /-1;
+    background-size: cover;
+    margin: 0px;
+    padding: 0px;
+    border-radius: 15px;
+    height: var(--height);
+}
+.World-clock {
+    grid-column: 2/-1;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 1;
+    grid-row: 1/2;
+    display: none;
+}
+h2 {
+  font-size: 25px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  text-shadow: 1px 1px rgba(255,255,255,0.2);
+  font-family:'helvetica neue';
+}
+.icons {
+  display: inline;
+}
+.icon-AllWorld {
+  position: relative;
+  top:35px;
+  margin-top: -40px;
+}
+
+.cornerTempF1000 {
+     padding-left: 5px;
+}
+.movingDiv {
+  width: auto;
+  height: auto;
+  display: none;
+  position: absolute;
+  top: var(--pageY);
+  left: var(--pageX);
+  background: rgba(0,0,0,0.2);
+  padding: 1px;
+  margin: 10px;
+}
+.movingDivmax1000 {
+  max-width: 80px;
+  height: auto;
+  display: none;
+  position: fixed;
+  top: 110px;
+  left: 20px;
+  background: rgba(0,0,0,0.2);
+  padding: 1px;
+}
+.movingDivmax1000 div {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.LonLat{
+  font-size:1.5em;
+  text-align: justify;
+  padding-top: 4px;
+  margin-left: 0px;
+}
+
+.cityCorner1000 {
+   font-size: 1.7em;
+   max-width: 80px;
+   line-height: 20px;
+   overflow-x: hidden;
+   text-rendering: optimizeLegibility;
+}
+
+.hoursWorld {
+  font-size:1.7em;
+  text-align: justify;
+}
+
+
+
+.delete {
+  text-align: right;
+  color: rgba(0,0,0,0.3);
+}
+
+/*Recent List----------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+.wrapper {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2/3;
+  grid-row: 2/3;
+  padding: 10px 10px 10px 10px;
+  background: rgba(255,255,255,0.1);
+  border:5px solid rgba(255,255,255,0.2);
+  border-radius: 15px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  max-height: var(--height);
+  margin: 5px;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding:  0px 5% 0px 5%;
+  height: var(--listHeight);
+  max-height: var(--listHeight);
+  line-height: 30px;
+}
+
+
+.textAlighnRight {
+  float: right;
+  font-size: 1.2;
+  padding-top: 10px;
+}
+
+h2 {
+  text-align: center;
+  font-weight: 200;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+.hoursWorld {
+   font-size: 1.3em;
+}
+.minutesWorld {
+   font-size: 1.3em;
+}
+
+
+@media only screen and (max-width: 2200px) {
+  .textAlighnRight {
+    display: none;
+  }
+}
+
+
+@media only screen and (max-width: 1500px) {
+
+  .textAlighnRight {
+    display: none;
+  }
+  .icon-AllWorld {
+      display: none;
+  }
+
+}
+
+@media only screen and (max-width: 1000px) {
+  .body-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr ;
+  }
+  .wrapper {
+    grid-row: 2/-1;
+      -ms-grid-rows: 2/-1;
+    grid-column: 1/-1;
+      -ms-grid-columns: 1/-1;
+  }
+  .textAlighnRight {
+    display: block;
+  }
+  .icon-AllWorld {
+      display: none;
+  }
+
+  .world-map {
+    grid-row: 1/2;
+    grid-column: 1/2;
+    margin: 5px;
+  }
+  .movingDivmax1000 {
+    max-width: 80px;
+    height: auto;
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+  .World-clock {
+    display: none;
+  }
+  .clock {
+    display: none;
+  }
+ span {
+   font-size: 2em;
+ }
+}
+
+@media only screen and (max-width: 700px) {
+  .textAlighnRight {
+    display: none;
+  }
+  .icon-AllWorld {
+      display: none;
+  }
+
+}
+
+
+/*beckup-for-analog-clock----------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+/* .hour-hand {
+  width:50%;
+  height:8px;
+  background:rgba(0,0,0,0.8);
+  position: absolute;
+  top:50%;
+  left: 10%;
+  transform-origin: 80%;
+  transform: rotate(90deg);
+  transition: all 0.05s;
+  transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+  border-radius:50%;
+  box-shadow:
+  inset 0 0 0 1px rgba(255,255,255,0.5),
+  0 0 1px rgba(255,255,255,0.2);
+  z-index: 7;
+}
+.min-hand {
+  width:50%;
+  height:5px;
+  background:rgba(0,0,0,0.8);
+  position: absolute;
+  top:50%;
+  left: 10%;
+  transform-origin: 80%;
+  transform: rotate(90deg);
+  transition: all 0.05s;
+  transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+  border-radius:50%;
+  box-shadow:
+  inset 0 0 0 1px rgba(255,255,255,0.5),
+  0 0 1px rgba(255,255,255,0.2);
+  z-index: 8;
+}
+.second-hand {
+  width:50%;
+  height:3px;
+  background:rgba(255,0,0,0.8);
+  position: absolute;
+  top:50%;
+  left: 10%;
+  transform-origin: 80%;
+  transform: rotate(90deg);
+  transition: all 0.05s;
+  transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+  border-radius:80%;
+  box-shadow:
+  0 0 0 1px rgba(255,255,255,0.1),
+  inset 0 0 0 1px rgba(255,255,255,0.1),
+  0 0 1px rgba(255,255,255,0.1);
+  z-index: 9;
+}
+
+.clock {
+  width: 25rem;
+  height: 25rem;
+  border:5px solid rgba(255,255,255,0.9);
+  border-radius:50%;
+  margin:auto;
+  position: relative;
+  padding:2rem;
+  background: rgba(255,255,255,0.2);
+  box-shadow:
+  0 0 0 4px rgba(0,0,0,0.1),
+  inset 0 0 0 3px #EFEFEF,
+  inset 0 0 10px black,
+  0 0 10px rgba(0,0,0,0.2);
+}
+.clock-face {
+  position:relative;
+  width: 100%;
+  height: 100%;
+  transform: translateY(-3px); /* account for the height of the clock hands
+}
+
+.dot-center {
+  width:10px;
+  height:10px;
+  background:black;
+  position: relative;
+  top:calc(50% - 3px);
+  left:calc(50% - 5px);
+  border-radius:50%;
+  z-index:10;
+  box-shadow:
+  0 0 0 1px rgba(255,255,255,0.2),
+  inset 0 0 0 1px rgba(255,255,255,0.2),
+  0 0 1px rgba(255,255,255,0.2);
+}
+.hours {
+  width:7%;
+  height:8px;
+  background:black;
+  position: absolute;
+  transform: rotate(90deg);
+  background:rgba(0,0,0,0.8);
+  border-radius:50%;
+  box-shadow:
+  0 0 0 1px rgba(255,255,255,0.2),
+  inset 0 0 0 1px rgba(255,255,255,0.2),
+  0 0 1px rgba(255,255,255,0.2);
+}
+.hour3 {
+  transform: rotate(0deg);
+  top:50%;
+  left:96%;
+}
+.hour6 {
+  padding: 0px;
+  margin: 0px;
+  transform: rotate(90deg);
+  top:100%;
+  left:46%;
+}
+.hour9 {
+  transform: rotate(0deg);
+  top:50%;
+  left:-3%;
+}
+.hour12 {
+  padding: 0px;
+  margin: 0px;
+  transform: rotate(90deg);
+  top:0%;
+  left:46%;
+}
+ .temp-london {
+  position: relative;
+  top: 50px;
+}
+.temp-tokyo {
+  position: relative;
+  top: 50px;
+}
+.temp-sydney {
+  position: relative;
+  top: 50px;
+}
+.temp-info {
+  position: relative;
+  left: 5%;
+}
+
+.tempAllWorld {
+  position: relative;
+  top: 30px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+select {
+  bottom: 7px;
+  right: 22%;
+  padding: 0px;
+  margin: 0px;
+  position: relative;
+  font-size: 30px;
+  text-shadow: 1px 1px rgba(255,255,255,0.4);
+  background: rgba(255, 255, 255, 0.0);
+  border: none;
+  color: rgba(255,255,255,0.9);
+  font-weight: 600;
+  font-family:'helvetica neue';
+  text-align: center;
+}
+
+option {
+  bottom: 7px;
+  right: 22%;
+  padding: 0px;
+  margin: 0px;
+  position: relative;
+  font-size: 30px;
+  background-color: black;
+  border: none;
+  color: black;
+  text-align: center;
+}
+span {
+  font-size: 30px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  text-shadow: 1px 1px rgba(255,255,255,0.2);
+}
+input {
+  position: relative;
+  left: -27px;
+  background: rgba(255, 255, 255, 0.2);
+  text-transform: capitalize;
+  color: rgba(255,255,255,0.85);
+  text-shadow: 1px 1px rgba(255,255,255,0.1);
+  height: 25px;
+  width: 150px;
+  font-size: 1em;
+  text-align: center;
+  font-weight: 800;
+  border-radius: 5px;
+  font-family:'helvetica neue';
+}
+
+
+.input-value {
+  position: absolute;
+  top: 60%;
+  left: -30%;
+  text-transform: capitalize;
+  max-width: 150px;
+}
+.input {
+  font-size: 50px;
+  font-weight: 400;
+}
+.results-list {
+  display:grid;
+}
+
+
+*/
